@@ -74,12 +74,17 @@ export function SceneOpening() {
       {/* ---------- Scene 01 ---------- */}
       <section className="scene-01 relative h-[180vh]">
         <div className="sticky top-0 h-screen overflow-hidden grain">
-          <img
-            src={kalash}
-            alt="A handcrafted brass kalash lit by a single oil lamp"
+          <video
+            src={kalashVideo}
+            poster={kalash}
+            aria-label="A handcrafted brass kalash lit by a single oil lamp"
             width={1024}
             height={1280}
             className="kalash-img absolute inset-0 h-full w-full object-cover object-center opacity-90"
+            muted
+            autoPlay
+            loop
+            playsInline
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_58%,transparent_0%,var(--night)_78%)]" />
           <div className="diya-glow pointer-events-none absolute left-1/2 top-[62%] h-[36vw] w-[36vw] -translate-x-1/2 -translate-y-1/2 scale-50 rounded-full opacity-0 bg-[radial-gradient(circle,color-mix(in_oklab,var(--gold)_45%,transparent)_0%,transparent_65%)] blur-2xl animate-breathe" />
