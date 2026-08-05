@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import kalash from "@/assets/kalash.jpg";
 import kalashVideo from "@/assets/kalash.mp4";
 import { useSceneContext } from "./useCinematicScroll";
@@ -16,6 +16,14 @@ const SOULS = ["Taste", "Tradition", "Wellness", "Community", "Culture"];
 
 export function SceneOpening() {
   const root = useRef<HTMLDivElement>(null);
+  const [showHeading, setShowHeading] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShowHeading(false);
+    }, 6000);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useSceneContext(root, ({ gsap }) => {
     // Scene 01 — the diya lights, darkness lifts, the kalash arrives.
@@ -60,13 +68,13 @@ export function SceneOpening() {
     // The mandala forms, rotates, then breaks into five droplets.
     gsap
       .timeline({
-        scrollTrigger: { trigger: ".mandala-stage", start: "top top", end: "+=180%", scrub: 1, pin: true },
+        scrollTrigger: { trigger: ".mandala-stage", start: "top top", end: "bottom top", scrub: 1, pin: true },
       })
       .fromTo(".mandala", { scale: 0.35, opacity: 0, rotate: -60 }, { scale: 1, opacity: 1, rotate: 0, duration: 1.4 })
       .to(".mandala", { rotate: 180, duration: 2 }, "<0.4")
-      .to(".mandala-ring", { opacity: 0, scale: 1.5, duration: 1 }, ">-0.6")
-      .fromTo(".soul", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.12, duration: 1 }, "<0.2")
-      .fromTo(".soul-label", { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8 }, "<0.5");
+      .fromTo(".mandala-ring", { opacity: 0.15, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1 }, "<0.2")
+      .fromTo(".soul", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.08, duration: 1 }, "<0.2")
+      .fromTo(".soul-label", { opacity: 1, y: 18 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.8 }, "<0.2");
   });
 
   return (
@@ -91,7 +99,11 @@ export function SceneOpening() {
           <div className="veil absolute inset-0 bg-night" />
 
           <div className="absolute inset-x-0 bottom-0 top-0 flex flex-col items-center justify-end pb-24 px-6 text-center">
-            <p className="open-line font-display text-[clamp(2rem,5.4vw,4.6rem)] leading-[1.05] text-ivory">
+            <p
+              className={`open-line font-display text-[clamp(2rem,5.4vw,4.6rem)] leading-[1.05] text-ivory transition-opacity duration-500 ${
+                showHeading ? "opacity-100" : "opacity-0 hidden"
+              }`}
+            >
               {["Every meal begins", "with a blessing."].map((line) => (
                 <span key={line} className="block overflow-hidden">
                   <span className="block">{line}</span>
