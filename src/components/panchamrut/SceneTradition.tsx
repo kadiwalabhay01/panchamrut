@@ -1,30 +1,136 @@
-import { useRef } from "react";
-import temple from "@/assets/temple.jpg";
+import { useEffect, useRef } from "react";
 import { useSceneContext } from "./useCinematicScroll";
+
+// Import all 240 image frames from src/assets/frames
+const frameModules = import.meta.glob<string>("/src/assets/frames/*.jpg", {
+  eager: true,
+  import: "default",
+});
+
+const frameUrls = Object.keys(frameModules)
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+  .map((key) => frameModules[key]);
 
 export function SceneTradition() {
   const root = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const currentFrameRef = useRef<number>(0);
+
+  // Render a frame onto canvas maintaining cover aspect ratio on desktop & responsive fit on mobile
+  const renderFrame = (index: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const img = imagesRef.current[index];
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const canvasRatio = width / height;
+
+    ctx.clearRect(0, 0, width, height);
+
+    if (canvasRatio < 1) {
+      // Mobile / Portrait view: render full width fit so side content is never cropped
+
+      // 1. Ambient background fill
+      const bgW = height * imgRatio;
+      const bgX = (width - bgW) / 2;
+      ctx.save();
+      ctx.globalAlpha = 0.25;
+      ctx.drawImage(img, bgX, 0, bgW, height);
+      ctx.restore();
+
+      // 2. Main frame centered & fitted to width
+      const fgW = width * 0.96;
+      const fgH = fgW / imgRatio;
+      const fgX = (width - fgW) / 2;
+      const fgY = (height - fgH) / 2;
+
+      ctx.save();
+      ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+      ctx.shadowBlur = 24 * (width / 400);
+      ctx.drawImage(img, fgX, fgY, fgW, fgH);
+      ctx.restore();
+    } else {
+      // Desktop / Landscape view: cover full screen
+      let renderWidth = width;
+      let renderHeight = height;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      if (canvasRatio > imgRatio) {
+        renderHeight = width / imgRatio;
+        offsetY = (height - renderHeight) / 2;
+      } else {
+        renderWidth = height * imgRatio;
+        offsetX = (width - renderWidth) / 2;
+      }
+
+      ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
+    }
+  };
+
+  // Canvas size and image preloading setup
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const updateCanvasSize = () => {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      renderFrame(currentFrameRef.current);
+    };
+
+    updateCanvasSize();
+    window.addEventListener("resize", updateCanvasSize);
+
+    // Preload frame images
+    const loadedImages: HTMLImageElement[] = [];
+    frameUrls.forEach((url, i) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = () => {
+        if (i === 0 || i === currentFrameRef.current) {
+          renderFrame(currentFrameRef.current);
+        }
+      };
+      loadedImages.push(img);
+    });
+    imagesRef.current = loadedImages;
+
+    return () => {
+      window.removeEventListener("resize", updateCanvasSize);
+    };
+  }, []);
 
   useSceneContext(root, ({ gsap }) => {
-    // The temple draws itself out of the dust.
-    gsap.utils.toArray<SVGPathElement>(".draw").forEach((path) => {
-      const len = path.getTotalLength?.() ?? 1200;
-      gsap.fromTo(
-        path,
-        { strokeDasharray: len, strokeDashoffset: len },
-        {
-          strokeDashoffset: 0,
-          ease: "none",
-          scrollTrigger: { trigger: ".tradition-stage", start: "top top", end: "+=140%", scrub: 1 },
-        },
-      );
-    });
-
-    gsap.to(".temple-photo", {
-      opacity: 0.55,
-      scale: 1.12,
+    // Scrub through 240 frames over 5 scroll count duration (pin 400% extra height)
+    const frameObj = { frame: 0 };
+    gsap.to(frameObj, {
+      frame: frameUrls.length - 1,
+      snap: "frame",
       ease: "none",
-      scrollTrigger: { trigger: ".tradition-stage", start: "top top", end: "+=180%", scrub: true },
+      scrollTrigger: {
+        trigger: ".tradition-stage",
+        start: "top top",
+        end: "+=400%",
+        pin: true,
+        scrub: 0.5,
+        onUpdate: () => {
+          const idx = Math.min(Math.max(0, Math.round(frameObj.frame)), frameUrls.length - 1);
+          currentFrameRef.current = idx;
+          renderFrame(idx);
+        },
+      },
     });
 
     gsap.from(".tradition-item", {
@@ -53,30 +159,11 @@ export function SceneTradition() {
   return (
     <section ref={root} className="tradition-scene relative bg-night text-ivory">
       <div className="tradition-stage sticky top-0 h-screen overflow-hidden grain">
-        <img
-          src={temple}
-          alt="A South Indian stone temple corridor lit by brass lamps at dawn"
-          loading="lazy"
-          width={1600}
-          height={1200}
-          className="temple-photo absolute inset-0 h-full w-full object-cover opacity-25"
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 h-full w-full object-cover opacity-100 pointer-events-none"
         />
-        <div className="rays absolute inset-0 opacity-60" />
-
-        <svg viewBox="0 0 800 500" className="absolute inset-0 h-full w-full" fill="none">
-          <g stroke="oklch(0.82 0.12 80)" strokeWidth="1.4" strokeOpacity="0.75">
-            <path className="draw" d="M120 460 L680 460" />
-            <path className="draw" d="M200 460 L200 250 L400 120 L600 250 L600 460" />
-            <path className="draw" d="M250 460 L250 300 L400 190 L550 300 L550 460" />
-            <path className="draw" d="M340 460 L340 340 Q400 290 460 340 L460 460" />
-            <path className="draw" d="M400 120 L400 70" />
-            <path className="draw" d="M370 70 Q400 30 430 70 Z" />
-            <path className="draw" d="M280 250 L280 200 M320 250 L320 200 M480 250 L480 200 M520 250 L520 200" />
-          </g>
-          <g className="animate-swing" style={{ transformOrigin: "400px 120px" }}>
-            <path className="draw" d="M386 128 Q400 170 414 128 Z" stroke="oklch(0.86 0.13 82)" strokeWidth="1.6" />
-          </g>
-        </svg>
+        <div className="rays absolute inset-0 opacity-40 pointer-events-none" />
 
         <div className="pointer-events-none absolute inset-0">
           {Array.from({ length: 26 }).map((_, i) => (
@@ -86,11 +173,6 @@ export function SceneTradition() {
               style={{ left: `${(i * 41) % 98}%`, top: `${(i * 29) % 96}%`, animationDelay: `${i * 0.4}s` }}
             />
           ))}
-        </div>
-
-        <div className="absolute inset-x-0 bottom-16 px-6 text-center">
-          <p className="eyebrow text-gold/70">Scene Five</p>
-          <h2 className="mt-4 font-display text-[clamp(3rem,11vw,9rem)] leading-[0.9] gold-text">Tradition</h2>
         </div>
       </div>
 

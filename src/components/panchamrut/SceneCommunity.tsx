@@ -46,12 +46,12 @@ export function SceneCommunity() {
   return (
     <section ref={root} className="community-scene relative bg-sandstone text-ink">
       <div className="community-stage relative h-screen overflow-hidden grain">
-        <div className="absolute left-6 top-16 z-10 sm:left-12">
+        <div className="absolute left-6 top-4 z-10 sm:left-12">
           <p className="eyebrow text-copper">Scene Seven</p>
-          <h2 className="mt-4 font-display text-[clamp(3rem,9vw,7rem)] leading-[0.9]">Community</h2>
+          <h2 className="mt-2 font-display text-[clamp(3rem,9vw,5rem)] leading-[0.9]">Community</h2>
         </div>
 
-        <div className="memory-track absolute left-0 top-1/2 flex -translate-y-1/2 items-center gap-10 pl-8 pr-24 will-change-transform">
+        <div className="memory-track absolute left-0 top-[55%] flex -translate-y-1/2 items-center gap-10 pl-8 pr-24 will-change-transform">
           {MEMORIES.map((memory, i) => (
             <figure
               key={i}
@@ -72,8 +72,8 @@ export function SceneCommunity() {
           ))}
         </div>
 
-        <p className="absolute bottom-12 right-8 max-w-xs text-right text-xs uppercase tracking-[0.28em] text-ink/45">
-          No testimonials. Only memories.
+        <p className="absolute bottom-4 right-8 max-w-xs text-right text-xs uppercase tracking-[0.28em] text-ink/45">
+          No testimonials.<br /> Only memories.
         </p>
       </div>
     </section>
