@@ -176,7 +176,7 @@ export function SceneTradition() {
         </div>
       </div>
 
-      <div className="tradition-list relative mx-auto max-w-4xl px-6 py-[22vh]">
+      <div className="tradition-list relative mx-auto max-w-4xl px-6 py-[22vh] hidden">
         {items.map((item) => (
           <div key={item.title} className="tradition-item border-b border-ivory/10 py-12">
             <h3 className="font-display text-[clamp(2rem,5vw,3.6rem)] leading-none">{item.title}</h3>

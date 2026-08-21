@@ -100,9 +100,8 @@ export function SceneOpening() {
 
           <div className="absolute inset-x-0 bottom-0 top-0 flex flex-col items-center justify-end pb-24 px-6 text-center">
             <p
-              className={`open-line font-display text-[clamp(2rem,5.4vw,4.6rem)] leading-[1.05] text-ivory transition-opacity duration-500 ${
-                showHeading ? "opacity-100" : "opacity-0 hidden"
-              }`}
+              className={`open-line font-display text-[clamp(2rem,5.4vw,4.6rem)] leading-[1.05] text-ivory transition-opacity duration-500 ${showHeading ? "opacity-100" : "opacity-0 hidden"
+                }`}
             >
               {["Every meal begins", "with a blessing."].map((line) => (
                 <span key={line} className="block overflow-hidden">
