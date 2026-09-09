@@ -47,15 +47,15 @@ export function SceneCommunity() {
     <section ref={root} className="community-scene relative bg-sandstone text-ink">
       <div className="community-stage relative h-screen overflow-hidden grain">
         <div className="absolute left-6 top-8 z-10 sm:left-12">
-          <p className="eyebrow text-copper">Scene Seven</p>
-          <h2 className="mt-2 font-display text-[clamp(3rem,9vw,5rem)] leading-[0.9]">Community</h2>
+          {/* <p className="eyebrow text-copper">Scene Six</p> */}
+          <h2 className="font-display text-[clamp(3rem,9vw,5rem)] leading-[0.9]">Community</h2>
         </div>
 
         <div className="memory-track absolute left-0 top-[55%] flex -translate-y-1/2 items-center gap-10 pl-8 pr-24 will-change-transform">
           {MEMORIES.map((memory, i) => (
             <figure
               key={i}
-              className="polaroid w-[58vw] shrink-0 bg-coconut p-4 pb-14 shadow-[0_30px_70px_-30px_oklch(0.2_0.03_60/0.55)] sm:w-[34vw] lg:w-[26vw]"
+              className="polaroid w-[78vw] shrink-0 bg-coconut p-4 pb-14 shadow-[0_30px_70px_-30px_oklch(0.2_0.03_60/0.55)] sm:w-[36vw] lg:w-[26vw]"
             >
               <img
                 src={memory.src}

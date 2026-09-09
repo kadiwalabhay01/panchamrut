@@ -46,12 +46,12 @@ export function SceneTaste() {
           scrollTrigger: { trigger: dish, start: "top 82%", end: "top 24%", scrub: 1 },
         },
       );
-      gsap.to(dish.querySelector(".dish-img"), {
-        yPercent: -14,
-        rotate: 4,
-        ease: "none",
-        scrollTrigger: { trigger: dish, start: "top bottom", end: "bottom top", scrub: true },
-      });
+      // gsap.to(dish.querySelector(".dish-img"), {
+      //   yPercent: -14,
+      //   rotate: 4,
+      //   ease: "none",
+      //   scrollTrigger: { trigger: dish, start: "top bottom", end: "bottom top", scrub: true },
+      // });
       gsap.from(dish.querySelectorAll(".dish-copy > *"), {
         opacity: 0,
         y: 44,
@@ -71,14 +71,7 @@ export function SceneTaste() {
       });
     });
 
-    gsap.from(".more-dish", {
-      opacity: 0,
-      yPercent: 40,
-      stagger: 0.12,
-      duration: 1.1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".more-grid", start: "top 78%" },
-    });
+
 
     // The plate dissolves into spices that fly away.
     gsap.to(".dissolve", {
@@ -91,7 +84,7 @@ export function SceneTaste() {
   });
 
   return (
-    <section ref={root} className="taste-scene relative overflow-hidden bg-ivory py-[16vh] text-ink grain">
+    <section ref={root} className="taste-scene relative overflow-hidden bg-ivory py-10 sm:py-12 md:py-16 text-ink grain">
       <div className="pointer-events-none absolute inset-0">
         {Array.from({ length: 18 }).map((_, i) => (
           <span
@@ -102,19 +95,19 @@ export function SceneTaste() {
         ))}
       </div>
 
-      <header className="relative mx-auto max-w-6xl px-6">
-        <p className="eyebrow text-copper">Scene Four</p>
-        <h2 className="mt-6 font-display text-[clamp(3rem,11vw,9rem)] leading-[0.9]">Taste</h2>
+      <header className="relative mx-auto max-w-7xl px-4 md:px-6">
+        {/* <p className="eyebrow text-copper">Scene Three</p> */}
+        <h2 className="font-display text-[clamp(2.25rem,7vw,8rem)] leading-[0.9]">Taste</h2>
         <p className="mt-8 max-w-md text-sm leading-relaxed text-ink/60">
           Six plates, each one a small autobiography of the coast, the ghats and the kitchen fire.
         </p>
       </header>
 
-      <div className="relative mx-auto mt-[14vh] max-w-6xl space-y-[18vh] px-6">
+      <div className="relative mx-auto mt-10 max-w-7xl space-y-10 px-4 md:px-6">
         {DISHES.map((dish, i) => (
           <article
             key={dish.name}
-            className={`dish grid items-center gap-12 md:grid-cols-2 ${i % 2 ? "md:[direction:rtl]" : ""}`}
+            className={`dish grid items-center gap-8 md:gap-12 md:grid-cols-2 ${i % 2 ? "md:[direction:rtl]" : ""}`}
           >
             <div className="dish-media relative overflow-hidden md:[direction:ltr]">
               <img
@@ -135,18 +128,38 @@ export function SceneTaste() {
             </div>
           </article>
         ))}
+        {/* <div className="more-grid grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {MORE.map((d, idx) => (
+            <div
+              key={d.name}
+              className="more-dish group relative flex flex-col justify-between p-6 md:p-8 border border-ink/15 bg-gradient-to-br from-coconut via-ivory to-sandstone transition-all duration-500 hover:-translate-y-1 hover:border-copper/60 hover:shadow-xl cursor-pointer"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[10px] font-mono tracking-widest text-copper uppercase font-semibold">
+                  0{idx + 1}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-copper/30 group-hover:bg-copper transition-colors duration-300" />
+              </div>
 
-        <div className="more-grid grid gap-px overflow-hidden border border-ink/10 bg-ink/10 sm:grid-cols-2">
-          {MORE.map((d) => (
-            <div key={d.name} className="more-dish bg-ivory p-10">
-              <h4 className="font-display text-4xl">{d.name}</h4>
-              <p className="mt-3 text-xs uppercase tracking-[0.28em] text-ink/45">{d.origin}</p>
+              <div>
+                <h4 className="font-display text-2xl sm:text-3xl text-ink font-normal leading-tight group-hover:text-copper transition-colors duration-300">
+                  {d.name}
+                </h4>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-ink/60 font-medium">
+                  {d.origin}
+                </p>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-ink/10 flex items-center justify-between">
+                <span className="text-[10px] uppercase tracking-widest text-ink/40">Heritage Taste</span>
+                <span className="text-xs text-copper opacity-0 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+              </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
-      <div className="dissolve relative mx-auto mt-[16vh] max-w-3xl px-6 text-center">
+      <div className="dissolve relative mx-auto mt-10 md:mt-12 max-w-3xl px-6 text-center">
         <p className="font-display text-[clamp(1.6rem,4vw,3rem)] italic leading-snug text-ink/70">
           And then the plate dissolves into spice, and the spice into stone dust.
         </p>

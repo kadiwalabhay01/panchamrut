@@ -39,13 +39,13 @@ export function SceneVisit() {
       />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,var(--night),transparent_35%,transparent_65%,var(--night))]" />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-[18vh]">
-        <p className="eyebrow text-gold/70">Scene Ten</p>
-        <h2 className="visit-block mt-6 font-display text-[clamp(3rem,11vw,9rem)] leading-[0.9] gold-text">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-12 md:py-16">
+        {/* <p className="eyebrow text-gold/70">Scene Ten</p> */}
+        <h2 className="visit-block font-display text-[clamp(3rem,11vw,9rem)] leading-[0.9] gold-text">
           Visit Panchamrut
         </h2>
 
-        <div className="mt-[10vh] grid gap-14 sm:grid-cols-2">
+        <div className="mt-10 md:mt-16 grid gap-10 md:gap-14 sm:grid-cols-2">
           <div className="visit-block">
             <p className="eyebrow text-ivory/40">Where</p>
             <p className="mt-5 font-display text-3xl leading-snug text-ivory/85">
@@ -66,7 +66,7 @@ export function SceneVisit() {
           </div>
         </div>
 
-        <div className="visit-block mt-16 flex flex-wrap gap-4">
+        <div className="visit-block mt-10 md:mt-16 flex flex-wrap gap-4">
           {LINKS.map((l) => (
             <a
               key={l.label}
@@ -84,7 +84,7 @@ export function SceneVisit() {
           ))}
         </div>
 
-        <div className="visit-block mt-[12vh] overflow-hidden rounded-sm border border-ivory/10">
+        <div className="visit-block mt-10 md:mt-16 overflow-hidden rounded-sm border border-ivory/10">
           <iframe
             title="Panchamrut location map"
             src="https://www.openstreetmap.org/export/embed.html?bbox=77.56%2C12.93%2C77.60%2C12.96&layer=mapnik"

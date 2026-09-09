@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import kalash from "@/assets/kalash.jpg";
+import kalash from "@/assets/kalash2.jpeg";
 import { useSceneContext } from "./useCinematicScroll";
 
 export function SceneFinal() {
@@ -58,7 +58,7 @@ export function SceneFinal() {
         <span className="animate-steam pointer-events-none absolute bottom-1/2 left-1/2 h-48 w-20 -translate-x-1/2 rounded-full bg-coconut/20 blur-3xl" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <p className="final-line font-display text-[clamp(2rem,6vw,5rem)] leading-[1.05] opacity-0">
+          <p className="final-line font-display text-[clamp(2rem,6vw,5rem)] leading-[1.19] opacity-0">
             Come for the meal.
             <span className="block italic gold-text">Stay for the feeling.</span>
           </p>
@@ -71,7 +71,9 @@ export function SceneFinal() {
             </a>
             <a
               href="#visit"
-              className="final-cta rounded-full border border-ivory/30 px-10 py-4 text-sm font-medium uppercase tracking-[0.24em] text-ivory/80 opacity-0 transition-colors duration-500 hover:border-gold hover:text-gold"
+              className="final-cta rounded-full border border-gold px-10 py-4 text-sm font-medium uppercase 
+              tracking-[0.24em] text-ivory/80 opacity-0 transition-colors duration-700 
+              hover:bg-gold hover:text-night"
             >
               Visit Panchamrut
             </a>
@@ -79,11 +81,11 @@ export function SceneFinal() {
         </div>
       </section>
 
-      <footer className="site-footer relative border-t border-ivory/10 px-6 py-24">
-        <p className="footer-col mx-auto mb-20 max-w-6xl font-display text-[clamp(1.8rem,5vw,3.6rem)] leading-tight text-ivory/80">
+      <footer className="site-footer relative border-t border-ivory/10 px-4 sm:px-6 py-10 sm:py-12 md:py-16 ">
+        <p className="footer-col mx-auto mb-10 md:mb-16 max-w-7xl font-display text-[clamp(1.8rem,5vw,3.6rem)] leading-tight text-ivory/80">
           Eat slowly. <span className="italic gold-text">Stay longer.</span> Come again.
         </p>
-        <div className="mx-auto grid max-w-6xl gap-14 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-7xl gap-12 md:gap-14 sm:grid-cols-3">
           <div className="footer-col">
             <p className="font-display text-4xl gold-text">Panchamrut</p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ivory/50">
@@ -109,7 +111,7 @@ export function SceneFinal() {
             </p>
           </div>
         </div>
-        <p className="mx-auto mt-20 max-w-6xl text-xs uppercase tracking-[0.28em] text-ivory/25">
+        <p className="mx-auto mt-20 max-w-7xl text-xs uppercase tracking-[0.28em] text-ivory/25">
           © {new Date().getFullYear()} Panchamrut
         </p>
       </footer>

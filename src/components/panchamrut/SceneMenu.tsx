@@ -81,18 +81,30 @@ export function SceneMenu() {
 
   return (
     <section ref={root} id="menu" className="relative bg-night text-ivory">
-      <div className="menu-intro mx-auto max-w-6xl px-6 py-[18vh]">
-        <p className="eyebrow text-gold/70">Scene Nine — The Journey</p>
-        <h2 className="menu-word mt-6 overflow-hidden font-display text-[clamp(4rem,18vw,15rem)] leading-[0.82]">
+      <div className="menu-intro mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-12 md:py-16">
+        {/* <p className="eyebrow text-gold/70">Scene Eight — The Journey</p> */}
+        {/* <h2 className="menu-word mt-6 overflow-hidden font-display text-[72px] md:text-[96px] lg:text-[120px] leading-[0.82]">
           <span className="block">Menu</span>
         </h2>
         <p className="mt-10 max-w-md text-sm leading-relaxed text-ivory/55">
           Not a list. Not a PDF. Five doorways, each one opening onto a time of day.
-        </p>
+        </p> */}
+
+
+        <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-8 md:gap-12">
+          <h2 className="menu-word overflow-hidden font-display text-[72px] md:text-[96px] lg:text-[120px] leading-[0.82]">
+            <span className="block">Menu</span>
+          </h2>
+
+          <p className="max-w-md text-sm leading-relaxed text-ivory/55 md:pt-4">
+            Not a list. Not a PDF. Five doorways, each one opening onto a time of day.
+          </p>
+        </div>
+
       </div>
 
       {CATEGORIES.map((cat, i) => (
-        <article key={cat.name} className="menu-panel relative h-[92vh] overflow-hidden grain">
+        <article key={cat.name} className="menu-panel relative h-[60vh] sm:h-[92vh] overflow-hidden grain">
           <img
             src={cat.image}
             alt={`${cat.name} at Panchamrut`}
@@ -103,9 +115,8 @@ export function SceneMenu() {
           />
           <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--night),transparent_58%)]" />
           <div
-            className={`menu-copy absolute inset-x-0 bottom-0 flex flex-col px-6 pb-[12vh] sm:px-14 ${
-              i % 2 ? "items-end text-right" : "items-start"
-            }`}
+            className={`menu-copy absolute inset-x-0 bottom-0 flex flex-col px-4 sm:px-6 pb-10 sm:pb-12 md:pb-16 mx-auto max-w-7xl ${i % 2 ? "items-end text-right" : "items-start"
+              }`}
           >
             <span className="eyebrow text-gold/80">{cat.hours}</span>
             <h3 className="mt-4 font-display text-[clamp(3rem,12vw,9rem)] leading-[0.85]">{cat.name}</h3>

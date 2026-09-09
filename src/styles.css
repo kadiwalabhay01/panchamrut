@@ -207,6 +207,7 @@ body {
 
 @utility grain {
   position: relative;
+
   &::after {
     content: "";
     position: absolute;
@@ -219,14 +220,12 @@ body {
 }
 
 @utility gold-text {
-  background-image: linear-gradient(
-    100deg,
-    var(--gold-deep) 0%,
-    var(--gold) 35%,
-    var(--coconut) 50%,
-    var(--gold) 65%,
-    var(--gold-deep) 100%
-  );
+  background-image: linear-gradient(100deg,
+      var(--gold-deep) 0%,
+      var(--gold) 35%,
+      var(--coconut) 50%,
+      var(--gold) 65%,
+      var(--gold-deep) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -235,14 +234,12 @@ body {
 }
 
 @utility rays {
-  background: conic-gradient(
-    from 200deg at 50% 0%,
-    transparent 0deg,
-    color-mix(in oklab, var(--gold) 22%, transparent) 24deg,
-    transparent 46deg,
-    color-mix(in oklab, var(--gold) 14%, transparent) 74deg,
-    transparent 104deg
-  );
+  background: conic-gradient(from 200deg at 50% 0%,
+      transparent 0deg,
+      color-mix(in oklab, var(--gold) 22%, transparent) 24deg,
+      transparent 46deg,
+      color-mix(in oklab, var(--gold) 14%, transparent) 74deg,
+      transparent 104deg);
 }
 
 @keyframes gold-sweep {
@@ -252,11 +249,13 @@ body {
 }
 
 @keyframes breathe {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 0.85;
   }
+
   50% {
     transform: scale(1.06);
     opacity: 1;
@@ -264,15 +263,18 @@ body {
 }
 
 @keyframes flame {
+
   0%,
   100% {
     transform: scale(1) translateY(0);
     opacity: 1;
   }
+
   40% {
     transform: scale(1.12, 0.94) translateY(-1px);
     opacity: 0.92;
   }
+
   70% {
     transform: scale(0.95, 1.08) translateY(1px);
     opacity: 1;
@@ -284,9 +286,11 @@ body {
     transform: translateY(0) scaleX(1);
     opacity: 0;
   }
+
   20% {
     opacity: 0.5;
   }
+
   100% {
     transform: translateY(-160px) scaleX(1.8);
     opacity: 0;
@@ -297,9 +301,11 @@ body {
   0% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
     transform: translate3d(14px, -22px, 0);
   }
+
   100% {
     transform: translate3d(0, 0, 0);
   }
@@ -312,10 +318,12 @@ body {
 }
 
 @keyframes swing {
+
   0%,
   100% {
     transform: rotate(-7deg);
   }
+
   50% {
     transform: rotate(7deg);
   }
@@ -324,25 +332,31 @@ body {
 .animate-breathe {
   animation: breathe 7s var(--ease-breath) infinite;
 }
+
 .animate-flame {
   animation: flame 1.6s ease-in-out infinite;
   transform-origin: bottom center;
 }
+
 .animate-steam {
   animation: rise 5s ease-out infinite;
 }
+
 .animate-drift {
   animation: drift 14s ease-in-out infinite;
 }
+
 .animate-spin-slow {
   animation: spin-slow 40s linear infinite;
 }
+
 .animate-swing {
   animation: swing 4.5s ease-in-out infinite;
   transform-origin: top center;
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
