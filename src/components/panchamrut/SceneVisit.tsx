@@ -41,14 +41,14 @@ export function SceneVisit() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-12 md:py-16">
         {/* <p className="eyebrow text-gold/70">Scene Ten</p> */}
-        <h2 className="visit-block font-display text-[clamp(3rem,11vw,9rem)] leading-[0.9] gold-text">
+        <h2 className="visit-block font-display text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.9] gold-text">
           Visit Panchamrut
         </h2>
 
         <div className="mt-10 md:mt-16 grid gap-10 md:gap-14 sm:grid-cols-2">
           <div className="visit-block">
             <p className="eyebrow text-ivory/40">Where</p>
-            <p className="mt-5 font-display text-3xl leading-snug text-ivory/85">
+            <p className="mt-5 font-display text-xl md:text-2xl leading-snug text-ivory/85">
               14, Temple Street
               <br />
               Basavanagudi, Bengaluru

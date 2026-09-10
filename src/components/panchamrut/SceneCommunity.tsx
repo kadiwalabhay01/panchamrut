@@ -48,7 +48,7 @@ export function SceneCommunity() {
       <div className="community-stage relative h-screen overflow-hidden grain">
         <div className="absolute left-6 top-8 z-10 sm:left-12">
           {/* <p className="eyebrow text-copper">Scene Six</p> */}
-          <h2 className="font-display text-[clamp(3rem,9vw,5rem)] leading-[0.9]">Community</h2>
+          <h2 className="font-display text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.9]">Community</h2>
         </div>
 
         <div className="memory-track absolute left-0 top-[55%] flex -translate-y-1/2 items-center gap-10 pl-8 pr-24 will-change-transform">
@@ -65,7 +65,7 @@ export function SceneCommunity() {
                 height={1008}
                 className="h-[42vh] w-full object-cover"
               />
-              <figcaption className="mt-6 text-center font-display text-2xl italic text-ink/70">
+              <figcaption className="mt-6 text-center font-display text-lg md:text-xl italic text-ink/70">
                 {memory.caption}
               </figcaption>
             </figure>

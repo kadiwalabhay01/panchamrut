@@ -35,8 +35,12 @@ export function SceneTradition() {
 
     ctx.clearRect(0, 0, width, height);
 
-    if (canvasRatio < 1) {
-      // Mobile / Portrait view: render full width fit so side content is never cropped
+    // Mobile & Tablet view: screens with width <= 1024px or aspect ratio < 1.4 (portrait & tablet landscape)
+    const isMobileOrTablet =
+      canvasRatio < 1.4 || (typeof window !== "undefined" && window.innerWidth <= 1024);
+
+    if (isMobileOrTablet) {
+      // Mobile & Tablet view: render full width/height fit with ambient background so content is never cropped
 
       // 1. Ambient background fill
       const bgW = height * imgRatio;
@@ -46,15 +50,19 @@ export function SceneTradition() {
       ctx.drawImage(img, bgX, 0, bgW, height);
       ctx.restore();
 
-      // 2. Main frame centered & fitted to width
-      const fgW = width * 0.96;
-      const fgH = fgW / imgRatio;
+      // 2. Main frame centered & fitted nicely within screen
+      let fgW = width * 0.96;
+      let fgH = fgW / imgRatio;
+      if (fgH > height * 0.92) {
+        fgH = height * 0.92;
+        fgW = fgH * imgRatio;
+      }
       const fgX = (width - fgW) / 2;
       const fgY = (height - fgH) / 2;
 
       ctx.save();
       ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
-      ctx.shadowBlur = 24 * (width / 400);
+      ctx.shadowBlur = 24 * (width / 700);
       ctx.drawImage(img, fgX, fgY, fgW, fgH);
       ctx.restore();
     } else {

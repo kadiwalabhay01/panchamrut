@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCinematicScroll } from "@/components/panchamrut/useCinematicScroll";
+import { Header } from "@/components/Header";
 import { SceneOpening } from "@/components/panchamrut/SceneOpening";
 import { SceneTaste } from "@/components/panchamrut/SceneTaste";
 import { SceneTradition } from "@/components/panchamrut/SceneTradition";
 import { SceneWellness } from "@/components/panchamrut/SceneWellness";
 import { SceneCommunity } from "@/components/panchamrut/SceneCommunity";
 import { SceneCulture } from "@/components/panchamrut/SceneCulture";
-import { SceneMenu } from "@/components/panchamrut/SceneMenu";
+// import { SceneMenu } from "@/components/panchamrut/SceneMenu";
 import { SceneVisit } from "@/components/panchamrut/SceneVisit";
 import { SceneFinal } from "@/components/panchamrut/SceneFinal";
+import { Footer } from "@/components/Footer";
 
 const TITLE = "Panchamrut — Five Elements. One Soulful Meal.";
 const DESCRIPTION =
@@ -34,15 +36,17 @@ function Index() {
   return (
     <main className="bg-night">
       <h1 className="sr-only">Panchamrut — Five Elements. One Soulful Meal.</h1>
+      <Header />
       <SceneOpening />
       <SceneTaste />
       <SceneTradition />
       <SceneWellness />
       <SceneCommunity />
       <SceneCulture />
-      <SceneMenu />
+      {/* <SceneMenu /> */}
       <SceneVisit />
       <SceneFinal />
+      <Footer />
     </main>
   );
 }

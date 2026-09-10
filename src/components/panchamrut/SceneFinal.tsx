@@ -6,22 +6,30 @@ export function SceneFinal() {
   const root = useRef<HTMLDivElement>(null);
 
   useSceneContext(root, ({ gsap }) => {
+    // 1. Pinned image stage: droplets merge into the kalash
     gsap
       .timeline({
-        scrollTrigger: { trigger: ".final-stage", start: "top top", end: "+=200%", scrub: 1, pin: true },
+        scrollTrigger: { trigger: ".final-stage", start: "top top", end: "+=120%", scrub: 1, pin: true },
       })
       .fromTo(".droplet", { scale: 1, opacity: 0.9 }, { x: 0, y: 0, scale: 0.4, opacity: 0, duration: 1.2 })
-      .fromTo(".final-kalash", { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4 }, "<0.5")
-      .fromTo(".final-line", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.2 }, "<0.6")
-      .fromTo(".final-cta", { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.15, duration: 1 }, "<0.5");
+      .fromTo(".final-kalash", { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4 }, "<0.5");
 
-    gsap.from(".footer-col", {
+    // 2. Just after image: text and buttons animate when scrolling down
+    gsap.from(".final-line", {
       opacity: 0,
       y: 40,
-      stagger: 0.12,
       duration: 1,
       ease: "power3.out",
-      scrollTrigger: { trigger: ".site-footer", start: "top 88%" },
+      scrollTrigger: { trigger: ".final-content", start: "top 75%" },
+    });
+
+    gsap.from(".final-buttons", {
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      delay: 0.15,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".final-content", start: "top 75%" },
     });
   });
 
@@ -29,6 +37,7 @@ export function SceneFinal() {
 
   return (
     <div ref={root} className="bg-night text-ivory">
+      {/* Pinned Image Stage */}
       <section className="final-stage relative h-screen overflow-hidden grain">
         <img
           src={kalash}
@@ -40,7 +49,7 @@ export function SceneFinal() {
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_55%,transparent_0%,var(--night)_72%)]" />
 
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {Array.from({ length: 5 }).map((_, i) => {
             const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
             return (
@@ -56,65 +65,30 @@ export function SceneFinal() {
         </div>
 
         <span className="animate-steam pointer-events-none absolute bottom-1/2 left-1/2 h-48 w-20 -translate-x-1/2 rounded-full bg-coconut/20 blur-3xl" />
+      </section>
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <p className="final-line font-display text-[clamp(2rem,6vw,5rem)] leading-[1.19] opacity-0">
-            Come for the meal.
-            <span className="block italic gold-text">Stay for the feeling.</span>
-          </p>
-          <div className="mt-14 flex flex-col items-center gap-4 sm:flex-row">
-            <a
-              href="#menu"
-              className="final-cta rounded-full bg-gold px-10 py-4 text-sm font-medium uppercase tracking-[0.24em] text-night opacity-0 transition-transform duration-500 hover:scale-[1.04]"
-            >
-              Explore our menu
-            </a>
-            <a
-              href="#visit"
-              className="final-cta rounded-full border border-gold px-10 py-4 text-sm font-medium uppercase 
-              tracking-[0.24em] text-ivory/80 opacity-0 transition-colors duration-700 
-              hover:bg-gold hover:text-night"
-            >
-              Visit Panchamrut
-            </a>
-          </div>
+      {/* Text and Buttons Section: appears when scrolling down just after the image */}
+      <section className="final-content relative py-10 sm:py-12 md:py-16 flex flex-col items-center justify-center px-6 text-center bg-[#060301]">
+        <p className="final-line font-display text-[clamp(2.25rem,6vw,5rem)] leading-[1.19]">
+          Come for the meal.
+          <span className="block italic gold-text">Stay for the feeling.</span>
+        </p>
+        <div className="final-buttons mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <a
+            href="#menu"
+            className="inline-flex items-center justify-center rounded-full bg-gold border border-transparent px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-night transition-all duration-300 hover:scale-[1.04]"
+          >
+            Explore our menu
+          </a>
+          <a
+            href="#visit"
+            className="inline-flex items-center justify-center rounded-full border border-gold px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-ivory/90 transition-all duration-300 hover:bg-gold hover:text-night hover:scale-[1.04]"
+          >
+            Visit Panchamrut
+          </a>
         </div>
       </section>
 
-      <footer className="site-footer relative border-t border-ivory/10 px-4 sm:px-6 py-10 sm:py-12 md:py-16 ">
-        <p className="footer-col mx-auto mb-10 md:mb-16 max-w-7xl font-display text-[clamp(1.8rem,5vw,3.6rem)] leading-tight text-ivory/80">
-          Eat slowly. <span className="italic gold-text">Stay longer.</span> Come again.
-        </p>
-        <div className="mx-auto grid max-w-7xl gap-12 md:gap-14 sm:grid-cols-3">
-          <div className="footer-col">
-            <p className="font-display text-4xl gold-text">Panchamrut</p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ivory/50">
-              Five elements. One soulful meal. Served since the first lamp was lit.
-            </p>
-          </div>
-          <div className="footer-col text-sm text-ivory/55">
-            <p className="eyebrow text-ivory/35">Visit</p>
-            <p className="mt-5 leading-relaxed">
-              14, Temple Street
-              <br />
-              Basavanagudi, Bengaluru
-            </p>
-          </div>
-          <div className="footer-col text-sm text-ivory/55">
-            <p className="eyebrow text-ivory/35">Hours</p>
-            <p className="mt-5 leading-relaxed">
-              Breakfast 6:30 — 11:00
-              <br />
-              Meals 12:00 — 15:00
-              <br />
-              Evening 16:00 — 21:30
-            </p>
-          </div>
-        </div>
-        <p className="mx-auto mt-20 max-w-7xl text-xs uppercase tracking-[0.28em] text-ivory/25">
-          © {new Date().getFullYear()} Panchamrut
-        </p>
-      </footer>
     </div>
   );
 }
