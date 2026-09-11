@@ -26,7 +26,7 @@ export function WellnessSection() {
         {/* Main Two-Column Desktop / Stacked Mobile Layout */}
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 items-center">
           {/* Left Column: Typography & Wellness Story (5 Cols on Desktop) */}
-          <div className="lg:col-span-5 flex flex-col justify-between h-full">
+          <div className="lg:col-span-5 flex flex-col justify-center h-full">
             <div>
               {/* Main Headline */}
               <motion.h2

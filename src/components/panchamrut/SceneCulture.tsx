@@ -200,14 +200,12 @@ export function CultureSection() {
             transition={{ duration: 0.85, delay: 0.25, ease: SMOOTH_EASE }}
             className="mt-10 flex flex-col items-center gap-3.5"
           >
-            <button
-              onClick={() => {
-                document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="border border-gold/60 hover:border-gold bg-black/50 hover:bg-gold/15 text-ivory text-xs sm:text-sm tracking-[0.25em] font-medium py-3.5 px-8 transition-all duration-300 uppercase cursor-pointer backdrop-blur-sm"
+            <a
+              href="/menu"
+              className="inline-block border border-gold/60 hover:border-gold bg-black/50 hover:bg-gold/15 text-ivory text-xs sm:text-sm tracking-[0.25em] font-medium py-3.5 px-8 transition-all duration-300 uppercase cursor-pointer backdrop-blur-sm"
             >
-              Experience Panchamrut +
-            </button>
+              Experience Panchamrut
+            </a>
             <span className="text-xs text-gold/85 italic font-display tracking-wide">
               There is always something waiting to be discovered.
             </span>

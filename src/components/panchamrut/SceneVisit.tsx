@@ -3,8 +3,8 @@ import culture from "@/assets/culture.jpg";
 import { useSceneContext } from "./useCinematicScroll";
 
 const LINKS = [
-  { label: "Reserve a table", href: "https://wa.me/919000000000", accent: true },
-  { label: "Google Maps", href: "https://maps.google.com/?q=Basavanagudi+Bengaluru" },
+  { label: "Reserve a table", href: "#reserve", accent: true },
+  { label: "Google Maps", href: "https://maps.app.goo.gl/BRheCYMC8hHMtMZu8" },
   { label: "Instagram", href: "https://instagram.com" },
 ];
 
@@ -49,9 +49,9 @@ export function SceneVisit() {
           <div className="visit-block">
             <p className="eyebrow text-ivory/40">Where</p>
             <p className="mt-5 font-display text-xl md:text-2xl leading-snug text-ivory/85">
-              14, Temple Street
+              Second Floor, Central 50
               <br />
-              Basavanagudi, Bengaluru
+              Sector 52, Noida, UP
             </p>
           </div>
           <div className="visit-block">
@@ -87,7 +87,7 @@ export function SceneVisit() {
         <div className="visit-block mt-10 md:mt-16 overflow-hidden rounded-sm border border-ivory/10">
           <iframe
             title="Panchamrut location map"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=77.56%2C12.93%2C77.60%2C12.96&layer=mapnik"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=77.374%2C28.576%2C77.380%2C28.581&layer=mapnik&marker=28.578364%2C77.376976"
             loading="lazy"
             className="h-[45vh] w-full opacity-70 grayscale"
           />

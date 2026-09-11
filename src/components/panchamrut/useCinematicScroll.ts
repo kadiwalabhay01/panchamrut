@@ -3,6 +3,16 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
+let lenisInstance: Lenis | null = null;
+
+export function stopLenis() {
+  lenisInstance?.stop();
+}
+
+export function startLenis() {
+  lenisInstance?.start();
+}
+
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -17,6 +27,7 @@ export function useCinematicScroll() {
       smoothWheel: true,
       touchMultiplier: 1.4,
     });
+    lenisInstance = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
     const raf = (time: number) => lenis.raf(time * 1000);
@@ -32,6 +43,7 @@ export function useCinematicScroll() {
       window.removeEventListener("load", refresh);
       gsap.ticker.remove(raf);
       lenis.destroy();
+      lenisInstance = null;
     };
   }, []);
 }

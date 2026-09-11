@@ -75,13 +75,13 @@ export function SceneFinal() {
         </p>
         <div className="final-buttons mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <a
-            href="#menu"
+            href="/menu"
             className="inline-flex items-center justify-center rounded-full bg-gold border border-transparent px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-night transition-all duration-300 hover:scale-[1.04]"
           >
             Explore our menu
           </a>
           <a
-            href="#visit"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-full border border-gold px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-ivory/90 transition-all duration-300 hover:bg-gold hover:text-night hover:scale-[1.04]"
           >
             Visit Panchamrut

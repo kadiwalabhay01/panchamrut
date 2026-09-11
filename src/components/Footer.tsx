@@ -19,8 +19,8 @@ export function Footer() {
   return (
     <footer
       ref={root}
-      className="site-footer relative border-t border-ivory/10 px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-[#060301] text-ivory select-none"
-    >
+      className="site-footer relative border-t border-ivory/10 px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-[#5C3616] text-ivory select-none">
+
       <p className="footer-col mx-auto mb-10 sm:mb-12 md:mb-16 max-w-7xl font-display text-[clamp(1.8rem,5vw,3.6rem)] leading-tight text-ivory/80">
         Eat slowly. <span className="italic gold-text">Stay longer.</span> Come again.
       </p>
@@ -28,13 +28,22 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 md:gap-14 sm:grid-cols-3">
         {/* Brand Summary */}
         <div className="footer-col">
-          <div className="flex items-center gap-2.5 mb-3">
+          <a
+            href="/"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            className="inline-flex items-center gap-2.5 mb-3 group cursor-pointer"
+          >
             <img
               src={logo}
               alt="Panchamrut"
-              className="h-12 w-40 sm:h-16 sm:w-56 object-contain"
+              className="h-12 w-40 sm:h-16 sm:w-56 object-contain transition-transform duration-500 group-hover:scale-103"
             />
-          </div>
+          </a>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-ivory/75">
             Five elements. One soulful meal. Served since the first lamp was lit.
           </p>
@@ -44,12 +53,14 @@ export function Footer() {
         <div className="footer-col text-sm text-ivory/55">
           <p className="eyebrow text-ivory/35">Visit</p>
           <p className="mt-4 leading-relaxed text-ivory/75">
-            14, Temple Street
+            Second Floor, Central 50
             <br />
-            Basavanagudi, Bengaluru
+            Sector 52, Noida, UP
           </p>
           <a
-            href="#visit"
+            href="https://maps.app.goo.gl/BRheCYMC8hHMtMZu8"
+            target="_blank"
+            rel="noreferrer"
             className="inline-block mt-3 text-xs uppercase tracking-[0.2em] text-gold hover:underline"
           >
             Get Directions →
@@ -57,7 +68,7 @@ export function Footer() {
         </div>
 
         {/* Operating Hours */}
-        <div className="footer-col text-sm text-ivory/55">
+        {/* <div className="footer-col text-sm text-ivory/55">
           <p className="eyebrow text-ivory/35">Hours</p>
           <p className="mt-4 leading-relaxed text-ivory/75">
             Breakfast: 6:30 — 11:00
@@ -66,7 +77,7 @@ export function Footer() {
             <br />
             Evening: 16:00 — 21:30
           </p>
-        </div>
+        </div> */}
       </div>
 
       <div className="mx-auto mt-10 sm:mt-12 md:mt-16 max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-ivory/5 pt-8 text-xs uppercase tracking-[0.25em] text-ivory/30">
