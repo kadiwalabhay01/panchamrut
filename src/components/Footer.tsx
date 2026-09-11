@@ -21,9 +21,9 @@ export function Footer() {
       ref={root}
       className="site-footer relative border-t border-ivory/10 px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-[#5C3616] text-ivory select-none">
 
-      <p className="footer-col mx-auto mb-10 sm:mb-12 md:mb-16 max-w-7xl font-display text-[clamp(1.8rem,5vw,3.6rem)] leading-tight text-ivory/80">
+      {/* <p className="footer-col mx-auto mb-10 sm:mb-12 md:mb-16 max-w-7xl font-display text-[clamp(1.8rem,5vw,3.6rem)] leading-tight text-ivory/80">
         Eat slowly. <span className="italic gold-text">Stay longer.</span> Come again.
-      </p>
+      </p> */}
 
       <div className="mx-auto grid max-w-7xl gap-12 md:gap-14 sm:grid-cols-3">
         {/* Brand Summary */}

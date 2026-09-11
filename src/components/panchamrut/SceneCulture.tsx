@@ -68,7 +68,7 @@ export function CultureSection() {
           >
             More Than a Meal.
             <br />
-            A Living Culture.
+            A Living <span className="uppercase text-gold">Culture.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

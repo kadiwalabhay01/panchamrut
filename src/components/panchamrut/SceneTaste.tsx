@@ -48,7 +48,7 @@ export function SceneTaste() {
 
       {/* Text coming like a popup from the middle */}
       <div className="taste-content relative z-10 flex flex-col items-center text-center text-ivory origin-center px-4">
-        <h2 className="font-display text-[clamp(4rem,15vw,8rem)] leading-[0.85] tracking-widest drop-shadow-2xl">
+        <h2 className="font-display text-[clamp(3rem,10vw,6.25rem)] leading-[0.85] tracking-widest drop-shadow-2xl">
           TASTE
         </h2>
         <div className="mt-6 md:mt-8 space-y-1.5 font-display text-base sm:text-lg md:text-2xl drop-shadow-lg text-ivory/90 tracking-wide max-w-4xl">

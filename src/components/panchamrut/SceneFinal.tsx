@@ -36,7 +36,7 @@ export function SceneFinal() {
   const radius = 150;
 
   return (
-    <div ref={root} className="bg-night text-ivory">
+    <div ref={root} className="bg-night text-ivory py-10 sm:py-1 md:py-16">
       {/* Pinned Image Stage */}
       <section className="final-stage relative h-[75vh] sm:h-[82vh] md:h-screen overflow-hidden grain">
         <img
@@ -66,29 +66,6 @@ export function SceneFinal() {
 
         <span className="animate-steam pointer-events-none absolute bottom-1/2 left-1/2 h-48 w-20 -translate-x-1/2 rounded-full bg-coconut/20 blur-3xl" />
       </section>
-
-      {/* Text and Buttons Section: appears when scrolling down just after the image */}
-      <section className="final-content -mt-16 sm:-mt-0 relative pb-10 sm:pb-12 md:pb-16 flex flex-col items-center justify-center px-6 text-center bg-[#060301]">
-        <p className="final-line font-display text-[clamp(2.25rem,6vw,5rem)] leading-[1.19]">
-          Come for the meal.
-          <span className="block italic gold-text">Stay for the feeling.</span>
-        </p>
-        <div className="final-buttons mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-          <a
-            href="/menu"
-            className="inline-flex items-center justify-center rounded-full bg-gold border border-transparent px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-night transition-all duration-300 hover:scale-[1.04]"
-          >
-            Explore our menu
-          </a>
-          <a
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full border border-gold px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-ivory/90 transition-all duration-300 hover:bg-gold hover:text-night hover:scale-[1.04]"
-          >
-            Visit Panchamrut
-          </a>
-        </div>
-      </section>
-
     </div>
   );
 }

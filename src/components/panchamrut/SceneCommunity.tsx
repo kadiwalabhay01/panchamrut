@@ -49,25 +49,19 @@ export function SceneCommunity() {
   };
 
   return (
-    <section className="community-scene relative bg-sandstone text-ink select-none">
+    <section className="community-scene relative bg-[#DCC8AA] text-ink select-none">
       <div className="community-stage relative h-screen overflow-hidden grain flex flex-col justify-between p-6 sm:p-12">
         {/* Top Header & Desktop Subtext */}
-        <div className="z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h2 className="font-display text-[clamp(3.25rem,6vw,4.75rem)] leading-[0.9]">Community</h2>
-          </div>
-
-          {/* Desktop Only Subtext on Top Right */}
-          <p className="hidden md:block text-right text-xs uppercase tracking-[0.28em] text-ink/45 max-w-xs">
-            No testimonials.<br /> Only memories.
-          </p>
+        <div className="relative z-20 flex flex-col justify-center items-center text-center">
+          <h2 className="font-display text-[clamp(3rem,10vw,4.75rem)] text-white leading-[0.9] mb-4 uppercase">Community</h2>
+          <p className="text-center text-white max-w-3xl">At Panchamrut, sharing goes beyond the table. We share the richness of culture, the joy of food, stories, experiences and traditions—creating connections that bring people a little closer, while everyone enjoys their own space.</p>
         </div>
 
         {/* Sliding Memory Track */}
-        <div className="relative w-full overflow-visible my-auto">
+        <div className="relative z-10 w-full overflow-visible my-auto py-6">
           <div
             ref={trackRef}
-            className="flex items-center gap-10 pl-2 pr-24 will-change-transform"
+            className="flex items-center gap-10 pl-2 pr-24 will-change-transform mt-2"
           >
             {MEMORIES.map((memory, i) => (
               <figure
@@ -75,7 +69,7 @@ export function SceneCommunity() {
                 style={{
                   transform: `translateY(${i % 2 ? "14px" : "-14px"}) rotate(${i % 3 === 0 ? "2.8deg" : "-2.2deg"})`,
                 }}
-                className="polaroid-card polaroid w-[78vw] shrink-0 bg-coconut p-4 pb-14 shadow-[0_30px_70px_-30px_oklch(0.2_0.03_60/0.55)] sm:w-[36vw] lg:w-[26vw] transition-shadow duration-500 hover:shadow-[0_35px_80px_-25px_rgba(0,0,0,0.45)]"
+                className="polaroid-card polaroid w-[78vw] shrink-0 bg-coconut p-4 pb-14 shadow-[0_30px_70px_-30px_oklch(0.2_0.03_60/0.55)] sm:w-[36vw] lg:w-[22vw] transition-shadow duration-500 hover:shadow-[0_35px_80px_-25px_rgba(0,0,0,0.45)]"
               >
                 <img
                   src={memory.src}
@@ -83,7 +77,7 @@ export function SceneCommunity() {
                   loading="lazy"
                   width={800}
                   height={1008}
-                  className="h-[42vh] w-full object-cover"
+                  className="h-[36vh] w-full object-cover"
                 />
                 <figcaption className="mt-6 text-center font-display text-lg md:text-xl italic text-ink/70">
                   {memory.caption}
@@ -94,18 +88,15 @@ export function SceneCommunity() {
         </div>
 
         {/* Bottom Section: Mobile subtext on left, Square Slide Buttons always on the bottom right */}
-        <div className="z-20 flex items-center justify-between sm:justify-end gap-6">
-          <p className="block md:hidden text-left text-xs uppercase tracking-[0.28em] text-ink/45 max-w-xs">
-            No testimonials.<br /> Only memories.
-          </p>
+        <div className="z-20 flex items-center justify-between sm:justify-end gap-6 mt-4">
+
           <div className="flex items-center gap-2 ml-auto">
             <button
               onClick={() => slide("left")}
               disabled={slideOffset <= 0}
               aria-label="Previous memory"
-              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-none border border-ink/30 bg-white/80 hover:bg-white text-ink flex items-center justify-center transition-all duration-200 hover:border-ink hover:scale-105 active:scale-95 shadow-sm cursor-pointer ${
-                slideOffset <= 0 ? "opacity-35 cursor-not-allowed hover:scale-100" : ""
-              }`}
+              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-none border border-ink/30 bg-white/80 hover:bg-white text-ink flex items-center justify-center transition-all duration-200 hover:border-ink hover:scale-105 active:scale-95 shadow-sm cursor-pointer ${slideOffset <= 0 ? "opacity-35 cursor-not-allowed hover:scale-100" : ""
+                }`}
             >
               <ChevronLeft className="w-5 h-5 text-ink" />
             </button>

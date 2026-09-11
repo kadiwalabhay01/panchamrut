@@ -35,7 +35,7 @@ export function WellnessSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="font-display text-[clamp(4rem,15vw,8rem)] leading-[0.98] tracking-tight font-normal text-forest transform-gpu"
+                className="font-display text-[clamp(3rem,10vw,4.75rem)] text-center leading-[0.98] tracking-tight font-normal text-forest transform-gpu uppercase"
               >
                 Wellness
               </motion.h2>
@@ -46,9 +46,9 @@ export function WellnessSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" }}
-                className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-relaxed text-forest/75 font-normal max-w-xl transform-gpu"
+                className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-relaxed text-forest/75 font-normal max-w-xl transform-gpu text-center"
               >
-                Our meals are more than a celebration of flavour—they are a thoughtful balance on a plate. Rice and grains bring wholesome carbohydrates, lentils add protein, vegetables and greens nourish with essential micronutrients, while carefully chosen fats and traditional spices complete the meal. From tempering to fermentation, every element has a purpose—creating food that is comforting, nourishing and deeply rooted in tradition.
+                Our meals are more than a celebration of flavour—they are a thoughtful balance on a plate. From tempering to fermentation, every element has a purpose—creating food that is comforting, nourishing and deeply <br /> rooted in tradition.
               </motion.p>
             </div>
 
