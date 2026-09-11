@@ -47,8 +47,7 @@ export function SceneCommunity() {
     <section ref={root} className="community-scene relative bg-sandstone text-ink">
       <div className="community-stage relative h-screen overflow-hidden grain">
         <div className="absolute left-6 top-8 z-10 sm:left-12">
-          {/* <p className="eyebrow text-copper">Scene Six</p> */}
-          <h2 className="font-display text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.9]">Community</h2>
+          <h2 className="font-display text-[clamp(3.25rem,6vw,4.75rem)] leading-[0.9]">Community</h2>
         </div>
 
         <div className="memory-track absolute left-0 top-[55%] flex -translate-y-1/2 items-center gap-10 pl-8 pr-24 will-change-transform">

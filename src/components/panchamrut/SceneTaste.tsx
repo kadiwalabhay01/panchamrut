@@ -6,20 +6,22 @@ export function SceneTaste() {
   const root = useRef<HTMLDivElement>(null);
 
   useSceneContext(root, ({ gsap }) => {
-    // Text pops up from the middle on scroll
+    // Smooth fade & gentle reveal with no overshoot
     gsap.fromTo(
       ".taste-content",
       {
-        scale: 0,
+        scale: 0.94,
+        y: 24,
         opacity: 0,
         filter: "blur(8px)",
       },
       {
         scale: 1,
+        y: 0,
         opacity: 1,
         filter: "blur(0px)",
-        duration: 1.1,
-        ease: "back.out(1.4)",
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: root.current,
           start: "top 60%",
@@ -49,9 +51,8 @@ export function SceneTaste() {
         <h2 className="font-display text-[clamp(4rem,15vw,8rem)] leading-[0.85] tracking-widest drop-shadow-2xl">
           TASTE
         </h2>
-        <div className="mt-6 md:mt-8 space-y-1.5 font-display text-base sm:text-lg md:text-2xl drop-shadow-lg text-ivory/90 tracking-wide">
-          <p>Taste is more than flavour.</p>
-          <p>It is a memory, felt with every bite.</p>
+        <div className="mt-6 md:mt-8 space-y-1.5 font-display text-base sm:text-lg md:text-2xl drop-shadow-lg text-ivory/90 tracking-wide max-w-4xl">
+          <p>At Panchamrut, taste is an invitation to experience South India in its most soulful form. The aroma of curry leaves, the warmth of freshly ground spices, the tang of tamarind and the richness of coconut come together in dishes that are vibrant yet balanced. Rooted in tradition and crafted with care, every plate at Panchamrut is a celebration of flavour, memory and the joy of eating together.</p>
         </div>
       </div>
     </section>

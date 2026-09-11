@@ -35,7 +35,7 @@ export function Footer() {
               className="h-12 w-40 sm:h-16 sm:w-56 object-contain"
             />
           </div>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-ivory/50">
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-ivory/75">
             Five elements. One soulful meal. Served since the first lamp was lit.
           </p>
         </div>
@@ -71,17 +71,6 @@ export function Footer() {
 
       <div className="mx-auto mt-10 sm:mt-12 md:mt-16 max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-ivory/5 pt-8 text-xs uppercase tracking-[0.25em] text-ivory/30">
         <p>© {new Date().getFullYear()} Panchamrut South Indian Cafe</p>
-        <div className="flex gap-6">
-          <a href="#menu" className="hover:text-gold transition-colors">
-            Menu
-          </a>
-          <a href="#culture" className="hover:text-gold transition-colors">
-            Culture
-          </a>
-          <a href="#visit" className="hover:text-gold transition-colors">
-            Contact
-          </a>
-        </div>
       </div>
     </footer>
   );

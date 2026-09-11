@@ -5,8 +5,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    // <header className="relative w-full z-40 bg-[#895220] border-b border-gold/10 py-3.5 sm:py-4">
-    <header className="absolute top-0 left-0 z-40 w-full bg-[#895220]/65 backdrop-blur-[4px] py-2 sm:py-3">
+    <header className="relative w-full z-40 bg-[#895220]/65 backdrop-blur-[4px] py-2 sm:py-3">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 flex items-center justify-between">
         {/* Left: Brand Logo */}
         <a href="./" className="flex items-center gap-3 group select-none">
@@ -21,13 +20,13 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-8 lg:gap-10">
           <a
             href="#culture"
-            className="text-[10px] sm:text-[13px] uppercase tracking-[0.18em] transition-colors duration-300 font-medium"
+            className="text-[10px] sm:text-[13px] uppercase hover:text-gold tracking-[0.18em] transition-colors duration-300 font-medium"
           >
-            Blogs
+            Stories
           </a>
           <a
             href="#visit"
-            className="text-[10px] sm:text-[13px] uppercase tracking-[0.18em] transition-colors duration-300 font-medium"
+            className="text-[10px] sm:text-[13px] uppercase hover:text-gold tracking-[0.18em] transition-colors duration-300 font-medium"
           >
             Contact Us
           </a>
@@ -64,15 +63,15 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown Menu (Floating Overlay) */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#895220]/65 border-t border-gold/15 px-6 py-5 flex flex-col gap-4 shadow-xl animate-fadeIn">
+        <div className="absolute top-full left-0 w-full md:hidden bg-[#5C3616] border-t border-gold/15 px-6 py-5 flex flex-col gap-4 shadow-xl animate-fadeIn z-50">
           <a
             href="#culture"
             onClick={() => setMobileMenuOpen(false)}
             className="text-sm uppercase tracking-[0.18em] text-ivory/90 hover:text-gold transition-colors py-1"
           >
-            Blogs
+            Stories
           </a>
           <a
             href="#visit"

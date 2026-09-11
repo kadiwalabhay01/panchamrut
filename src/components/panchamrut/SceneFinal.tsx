@@ -38,7 +38,7 @@ export function SceneFinal() {
   return (
     <div ref={root} className="bg-night text-ivory">
       {/* Pinned Image Stage */}
-      <section className="final-stage relative h-screen overflow-hidden grain">
+      <section className="final-stage relative h-[75vh] sm:h-[82vh] md:h-screen overflow-hidden grain">
         <img
           src={kalash}
           alt="The brass kalash, returned, with soft steam rising"
@@ -68,7 +68,7 @@ export function SceneFinal() {
       </section>
 
       {/* Text and Buttons Section: appears when scrolling down just after the image */}
-      <section className="final-content relative py-10 sm:py-12 md:py-16 flex flex-col items-center justify-center px-6 text-center bg-[#060301]">
+      <section className="final-content relative pb-10 sm:pb-12 md:pb-16 flex flex-col items-center justify-center px-6 text-center bg-[#060301]">
         <p className="final-line font-display text-[clamp(2.25rem,6vw,5rem)] leading-[1.19]">
           Come for the meal.
           <span className="block italic gold-text">Stay for the feeling.</span>

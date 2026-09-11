@@ -155,7 +155,7 @@ export function CultureSection() {
       </section>
 
       {/* ─── Bottom Section: Dark Closing with Bhojan & Call to Action ─── */}
-      <section className="relative w-full min-h-[80vh] sm:min-h-[88vh] flex items-center justify-center overflow-hidden text-center py-10 sm:py-12 md:py-16 bg-night select-none">
+      <section className="relative w-full min-h-[60vh] sm:min-h-[88vh] flex items-center justify-center overflow-hidden text-center py-10 sm:py-12 md:py-16 bg-night select-none">
         {/* Background Bhojan Image */}
         <img
           src={bhojan}

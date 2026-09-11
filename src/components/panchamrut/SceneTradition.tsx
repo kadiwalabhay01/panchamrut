@@ -50,12 +50,12 @@ export function SceneTradition() {
       ctx.drawImage(img, bgX, 0, bgW, height);
       ctx.restore();
 
-      // 2. Main frame centered & fitted nicely within screen
-      let fgW = width * 0.96;
-      let fgH = fgW / imgRatio;
-      if (fgH > height * 0.92) {
-        fgH = height * 0.92;
-        fgW = fgH * imgRatio;
+      // 2. Main frame centered & sized to fill balanced height without leaving huge empty areas
+      let fgH = Math.min(height * 0.58, height * 0.85);
+      let fgW = fgH * imgRatio;
+      if (fgW < width * 0.96) {
+        fgW = width * 0.96;
+        fgH = fgW / imgRatio;
       }
       const fgX = (width - fgW) / 2;
       const fgY = (height - fgH) / 2;
@@ -121,7 +121,8 @@ export function SceneTradition() {
   }, []);
 
   useSceneContext(root, ({ gsap }) => {
-    // Scrub through 240 frames over 5 scroll count duration (pin 400% extra height)
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 1024;
+    // Scrub through 240 frames over scroll count duration
     const frameObj = { frame: 0 };
     gsap.to(frameObj, {
       frame: frameUrls.length - 1,
@@ -130,7 +131,7 @@ export function SceneTradition() {
       scrollTrigger: {
         trigger: ".tradition-stage",
         start: "top top",
-        end: "+=400%",
+        end: isMobile ? "+=250%" : "+=400%",
         pin: true,
         scrub: 0.5,
         onUpdate: () => {

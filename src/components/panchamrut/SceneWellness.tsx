@@ -35,7 +35,7 @@ export function WellnessSection() {
                 whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 viewport={{ once: false, amount: 0.25 }}
                 transition={{ duration: 0.85, delay: 0.1, ease: SMOOTH_EASE }}
-                className="font-display text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.98] tracking-tight font-normal text-forest transform-gpu"
+                className="font-display text-[clamp(4rem,15vw,8rem)] leading-[0.98] tracking-tight font-normal text-forest transform-gpu"
               >
                 Wellness
               </motion.h2>
@@ -46,12 +46,9 @@ export function WellnessSection() {
                 whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 viewport={{ once: false, amount: 0.25 }}
                 transition={{ duration: 0.85, delay: 0.25, ease: SMOOTH_EASE }}
-                className="mt-5 sm:mt-8 text-sm sm:text-base md:text-lg leading-relaxed text-forest/75 font-normal max-w-xl transform-gpu"
+                className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-relaxed text-forest/75 font-normal max-w-xl transform-gpu"
               >
-                Our meals bring together a thoughtful balance of proteins, carbohydrates and healthy
-                fats, complemented by essential vitamins and minerals from natural ingredients,
-                chutneys and side dishes. Rooted in tradition, these wholesome combinations nourish
-                the body and make every meal both satisfying and purposeful.
+                Our meals are more than a celebration of flavour—they are a thoughtful balance on a plate. Rice and grains bring wholesome carbohydrates, lentils add protein, vegetables and greens nourish with essential micronutrients, while carefully chosen fats and traditional spices complete the meal. From tempering to fermentation, every element has a purpose—creating food that is comforting, nourishing and deeply rooted in tradition.
               </motion.p>
             </div>
 
