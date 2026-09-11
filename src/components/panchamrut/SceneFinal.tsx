@@ -68,7 +68,7 @@ export function SceneFinal() {
       </section>
 
       {/* Text and Buttons Section: appears when scrolling down just after the image */}
-      <section className="final-content relative pb-10 sm:pb-12 md:pb-16 flex flex-col items-center justify-center px-6 text-center bg-[#060301]">
+      <section className="final-content -mt-16 sm:-mt-0 relative pb-10 sm:pb-12 md:pb-16 flex flex-col items-center justify-center px-6 text-center bg-[#060301]">
         <p className="final-line font-display text-[clamp(2.25rem,6vw,5rem)] leading-[1.19]">
           Come for the meal.
           <span className="block italic gold-text">Stay for the feeling.</span>
