@@ -66,7 +66,7 @@ export function Header() {
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#132E20] border-t border-gold/15 px-6 py-5 flex flex-col gap-4 shadow-xl animate-fadeIn">
+        <div className="md:hidden bg-[#895220]/65 border-t border-gold/15 px-6 py-5 flex flex-col gap-4 shadow-xl animate-fadeIn">
           <a
             href="#culture"
             onClick={() => setMobileMenuOpen(false)}

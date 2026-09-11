@@ -71,8 +71,6 @@ export function SceneOpening() {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }
