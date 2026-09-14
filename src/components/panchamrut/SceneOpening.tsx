@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import kalashVideo from "@/assets/kalash2.mp4";
-import { useSceneContext } from "./useCinematicScroll";
+import { useEffect, useRef, useState, useCallback } from "react";
+import kalashVideo from "@/assets/kalash3.mp4";
+import { useSceneContext, gsap, ScrollTrigger } from "./useCinematicScroll";
 
 export function SceneOpening() {
   const root = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [showHeading, setShowHeading] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -12,6 +14,65 @@ export function SceneOpening() {
     }, 6000);
     return () => window.clearTimeout(timer);
   }, []);
+
+  // Auto-unmute at 10% volume as soon as the video element is ready
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    // Keep muted attribute for autoplay compliance; remove it immediately after mount
+    video.volume = 0.1;
+    video.muted = false;
+  }, []);
+
+  // Smooth volume fade via ScrollTrigger (runs once video is mounted)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Max volume capped at 10% — ambient background audio, not jarring
+    const MAX_VOL = 0.1;
+
+    const st = ScrollTrigger.create({
+      trigger: ".scene-01",
+      start: "60% top",   // start fading when 60% of scene-01 has scrolled past top
+      end: "bottom top",  // fully silent when scene-01 bottom hits viewport top
+      scrub: 0.6,
+      onUpdate: (self) => {
+        if (video.muted) return; // honour user mute choice
+        // Fade from MAX_VOL → 0 proportionally with scroll progress
+        video.volume = Math.max(0, MAX_VOL * (1 - self.progress));
+      },
+      onLeave: () => {
+        // guarantee silence when fully scrolled past
+        if (!video.muted) video.volume = 0;
+      },
+      onEnterBack: () => {
+        // restore to 10% when scrolling back into scene
+        if (!video.muted) video.volume = MAX_VOL;
+      },
+    });
+
+    return () => {
+      st.kill();
+    };
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isMuted) {
+      // Unmuting: capped at 10% max — ambient, not startling
+      video.muted = false;
+      video.volume = 0.1;
+      setIsMuted(false);
+    } else {
+      video.muted = true;
+      setIsMuted(true);
+    }
+  }, [isMuted]);
 
   useSceneContext(root, ({ gsap }) => {
     // Scene 01 — the diya lights, darkness lifts, the kalash arrives.
@@ -54,8 +115,9 @@ export function SceneOpening() {
       {/* ---------- Scene 01 ---------- */}
       <section className="scene-01 relative h-auto lg:h-[180vh]">
         <div className="relative lg:sticky lg:top-0 h-auto lg:h-screen overflow-hidden grain flex items-center justify-center bg-transparent lg:bg-black">
-          {/* Main Video: Fits naturally horizontally on mobile with no black bars on top/bottom, full-bleed cover on desktop */}
+          {/* Main Video */}
           <video
+            ref={videoRef}
             src={kalashVideo}
             aria-label="A handcrafted brass kalash lit by a single oil lamp"
             width={1024}
@@ -66,6 +128,51 @@ export function SceneOpening() {
             loop
             playsInline
           />
+
+          {/* Mute / Unmute button — top-right corner, above the video */}
+          <button
+            id="scene-01-sound-toggle"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+            onClick={toggleMute}
+            className="absolute top-4 right-4 z-20 flex items-center justify-center w-8 h-8 rounded-full
+            bg-black/40 backdrop-blur-md border border-white/20 text-white transition-all duration-300
+            hover:bg-black/60 hover:scale-110 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/60"
+            style={{ backdropFilter: "blur(8px)" }}
+          >
+            {isMuted ? (
+              /* Speaker with X (muted) */
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-4 h-4"
+              >
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            ) : (
+              /* Speaker with waves (unmuted) */
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5"
+              >
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              </svg>
+            )}
+          </button>
         </div>
       </section>
     </div>
