@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import kalashVideo from "@/assets/kalash4.mp4";
+import kalashVideo from "@/assets/kalash.mp4";
 import { useSceneContext, gsap, ScrollTrigger } from "./useCinematicScroll";
 
 export function SceneOpening() {
@@ -135,8 +135,8 @@ export function SceneOpening() {
             aria-label={isMuted ? "Unmute video" : "Mute video"}
             onClick={toggleMute}
             className="absolute top-4 right-4 z-20 flex items-center justify-center w-8 h-8 rounded-full
-            bg-black/40 backdrop-blur-md border border-white/20 text-white transition-all duration-300
-            hover:bg-black/60 hover:scale-110 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/60"
+                       bg-black/40 backdrop-blur-md border border-white/20 text-white transition-all duration-300
+                       hover:bg-black/60 hover:scale-110 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/60"
             style={{ backdropFilter: "blur(8px)" }}
           >
             {isMuted ? (
