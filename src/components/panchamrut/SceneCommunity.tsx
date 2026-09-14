@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import m1 from "@/assets/memory-1.jpg";
 import m2 from "@/assets/memory-2.jpg";
 import m3 from "@/assets/memory-3.jpg";
@@ -16,7 +16,76 @@ const MEMORIES = [
 
 export function SceneCommunity() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [slideOffset, setSlideOffset] = useState(0);
+
+  // keep a ref in sync so useEffect closure never reads stale state
+  const slideOffsetRef = useRef(0);
+  const syncOffset = (v: number) => {
+    slideOffsetRef.current = v;
+    setSlideOffset(v);
+  };
+
+  // ── Native touch listeners (passive:false so we can preventDefault) ──
+  useEffect(() => {
+    const el = wrapperRef.current;
+    const track = trackRef.current;
+    if (!el || !track) return;
+
+    let dragging = false;
+    let startX = 0;
+    let startOffset = 0;
+
+    const wobbleCards = (progress: number) => {
+      gsap.utils.toArray<HTMLElement>(".polaroid-card").forEach((card, i) => {
+        const baseRotate = i % 3 === 0 ? 2.8 : -2.2;
+        const baseY = i % 2 ? 14 : -14;
+        gsap.set(card, {
+          y: baseY + Math.sin(progress * Math.PI * 2 + i) * 12,
+          rotate: baseRotate + Math.cos(progress * Math.PI + i) * 2,
+        });
+      });
+    };
+
+    const onStart = (e: TouchEvent) => {
+      if (window.innerWidth >= 768) return;
+      dragging = true;
+      startX = e.touches[0].clientX;
+      startOffset = slideOffsetRef.current;
+      gsap.killTweensOf(track);
+    };
+
+    const onMove = (e: TouchEvent) => {
+      if (!dragging) return;
+      // prevent vertical page scroll while swiping horizontally
+      e.preventDefault();
+      const delta = startX - e.touches[0].clientX;
+      const maxScroll = track.scrollWidth - window.innerWidth + 80;
+      const newOffset = Math.max(0, Math.min(startOffset + delta, maxScroll));
+      gsap.set(track, { x: -newOffset });
+      slideOffsetRef.current = newOffset; // update ref live (no re-render during drag)
+      wobbleCards(maxScroll > 0 ? newOffset / maxScroll : 0);
+    };
+
+    const onEnd = () => {
+      if (!dragging) return;
+      dragging = false;
+      const finalOffset = slideOffsetRef.current;
+      syncOffset(finalOffset); // now commit to state
+      const maxScroll = track.scrollWidth - window.innerWidth + 80;
+      gsap.to(track, { x: -finalOffset, duration: 0.4, ease: "power2.out" });
+    };
+
+    el.addEventListener("touchstart", onStart, { passive: true });
+    el.addEventListener("touchmove", onMove, { passive: false }); // ← key fix
+    el.addEventListener("touchend", onEnd, { passive: true });
+
+    return () => {
+      el.removeEventListener("touchstart", onStart);
+      el.removeEventListener("touchmove", onMove);
+      el.removeEventListener("touchend", onEnd);
+    };
+  }, []); // runs once — stale closure avoided via slideOffsetRef
 
   const slide = (direction: "left" | "right") => {
     if (!trackRef.current) return;
@@ -27,7 +96,7 @@ export function SceneCommunity() {
     if (newOffset < 0) newOffset = 0;
     if (newOffset > maxScroll) newOffset = maxScroll;
 
-    setSlideOffset(newOffset);
+    syncOffset(newOffset);
 
     gsap.to(trackRef.current, {
       x: -newOffset,
@@ -58,7 +127,10 @@ export function SceneCommunity() {
         </div>
 
         {/* Sliding Memory Track */}
-        <div className="relative z-10 w-full overflow-visible my-auto py-6">
+        <div
+          ref={wrapperRef}
+          className="relative z-10 w-full overflow-visible my-auto py-6"
+        >
           <div
             ref={trackRef}
             className="flex items-center gap-10 pl-2 pr-24 will-change-transform mt-2"
