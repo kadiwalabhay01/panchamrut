@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import kalashVideo from "@/assets/kalash3.mp4";
+import kalashVideo from "@/assets/kalash4.mp4";
 import { useSceneContext, gsap, ScrollTrigger } from "./useCinematicScroll";
 
 export function SceneOpening() {
