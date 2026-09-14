@@ -272,7 +272,7 @@ export function ReserveModal({ isOpen, onClose }: ReserveModalProps) {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-3 rounded-none bg-[#3E4738] hover:bg-[#2C3427] text-white py-3.5 px-6 text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+                  className="w-full flex items-center justify-center gap-3 rounded-none bg-forest hover:bg-[#633B17] text-white py-3.5 px-6 text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
                 >
                   <span>REQUEST RESERVATION</span>
                   <span>→</span>

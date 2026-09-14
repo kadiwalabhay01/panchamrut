@@ -67,9 +67,6 @@ export function MenuPage() {
             {/* ─── 1. Top Narrative Section ─── */}
             <section className="space-y-6">
               <div className="space-y-4 sm:space-y-5">
-                <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-[#C86432]">
-                  {MENU_INTRO.eyebrow}
-                </span>
 
                 <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[58px] leading-[1.08] text-[#895220] font-normal tracking-tight max-w-2xl">
                   {MENU_INTRO.title}

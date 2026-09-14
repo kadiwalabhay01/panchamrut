@@ -19,7 +19,7 @@ export interface StoryItem {
 }
 
 export const STORIES_INTRO = {
-  eyebrow: "STORIES FROM THE SOUTH",
+
   title: "Lorem ipsum dolor sit amet consectetur.",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",

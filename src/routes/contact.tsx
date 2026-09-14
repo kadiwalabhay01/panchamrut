@@ -46,10 +46,6 @@ export function ContactPage() {
             <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left: Headline & Introduction */}
               <div className="lg:col-span-6 flex flex-col items-start space-y-4 sm:space-y-5">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#E4DCD0] bg-[#F5F1E8] text-[11px] font-medium uppercase tracking-[0.18em] text-[#7A6B58]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#C86432]" />
-                  Atithi Devo Bhava
-                </div>
 
                 <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[58px] leading-[1.08] text-[#895220] font-normal tracking-tight max-w-2xl">
                   Lorem ipsum dolor sit amet consectetur.
@@ -246,7 +242,7 @@ export function ContactPage() {
                           placeholder="e.g., Aarav"
                           value={formData.firstName}
                           onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-[#895220] placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
+                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-black placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
                         />
                       </div>
 
@@ -260,7 +256,7 @@ export function ContactPage() {
                           placeholder="e.g., Sharma"
                           value={formData.lastName}
                           onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-[#895220] placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
+                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-black placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
                         />
                       </div>
                     </div>
@@ -277,7 +273,7 @@ export function ContactPage() {
                           placeholder="e.g., aarav@domain.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-[#895220] placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
+                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-black placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
                         />
                       </div>
 
@@ -290,7 +286,7 @@ export function ContactPage() {
                           placeholder="e.g., +91 98765 43210"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-[#895220] placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
+                          className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-black placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all"
                         />
                       </div>
                     </div>
@@ -304,7 +300,7 @@ export function ContactPage() {
                         required
                         value={formData.inquiryNature}
                         onChange={(e) => setFormData({ ...formData, inquiryNature: e.target.value })}
-                        className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-[#895220] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all cursor-pointer"
+                        className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-black focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all cursor-pointer"
                       >
                         <option value="Wellness Retreat Reservations">Wellness Retreat Reservations</option>
                         <option value="Apothecary & Holistic Remedies">Apothecary & Holistic Remedies</option>
@@ -324,7 +320,7 @@ export function ContactPage() {
                         placeholder="I would love to learn more about the 7-day Ayurvedic detox program planned for next October..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-[#895220] placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all leading-relaxed"
+                        className="w-full bg-white border border-[#E2DDD5] rounded-md px-3.5 py-2.5 text-xs sm:text-sm text-black placeholder-[#ABA295] focus:outline-none focus:border-[#895220] focus:ring-1 focus:ring-[#895220] transition-all leading-relaxed"
                       />
                     </div>
 
@@ -342,23 +338,6 @@ export function ContactPage() {
               </div>
             </section>
 
-            {/* ─── 3. Bottom Quote Section ─── */}
-            <section className="text-center space-y-6 pt-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#E4DCD0] bg-[#F5F1E8] text-[11px] font-medium uppercase tracking-[0.18em] text-[#7A6B58]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#C86432]" />
-                Welcoming Your Presence
-              </div>
-
-              <blockquote className="font-display text-3xl sm:text-4xl lg:text-[42px] leading-snug text-[#895220] font-normal max-w-3xl mx-auto px-4">
-                &ldquo;Quietude is the luxury of the modern soul. Let us make room for your stillness.&rdquo;
-              </blockquote>
-
-              <div className="flex items-center justify-center gap-4 text-[11px] uppercase tracking-[0.24em] text-[#8C7E6D] font-medium">
-                <span className="h-px w-8 sm:w-16 bg-[#D8D0C3]" />
-                Panchamrut Concierge Team
-                <span className="h-px w-8 sm:w-16 bg-[#D8D0C3]" />
-              </div>
-            </section>
           </div>
         </main>
       </div>

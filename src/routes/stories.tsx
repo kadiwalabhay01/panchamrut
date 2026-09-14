@@ -57,20 +57,15 @@ export function StoriesPage() {
             {/* ─── 1. Top Journal Narrative Section ─── */}
             <section className="space-y-6">
 
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#E4DCD0] bg-[#F5F1E8] text-[11px] font-medium uppercase tracking-[0.18em] text-[#7A6B58]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#C86432]" />
-                {STORIES_INTRO.eyebrow}
-              </div>
-
-              <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
-                <div className="lg:col-span-7 space-y-4">
-                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[58px] leading-[1.08] text-[#895220] font-normal tracking-tight max-w-2xl">
+              <div className="grid lg:grid-cols-[1fr_1fr] gap-4 md:gap-6 lg:gap-10 items-start">
+                <div className="lg:col-span-1 space-y-4">
+                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[58px] leading-[1.08] text-[#895220] font-normal tracking-tight">
                     {STORIES_INTRO.title}
                   </h1>
                 </div>
 
-                <div className="lg:col-span-5 flex lg:justify-start pt-2 lg:pt-8">
-                  <p className="text-xs sm:text-sm md:text-base leading-relaxed text-[#5C5245] max-w-sm">
+                <div className="lg:col-span-1 flex lg:justify-end lg:pt-6">
+                  <p className="text-xs sm:text-sm md:text-base leading-relaxed text-[#5C5245] max-w-lg">
                     {STORIES_INTRO.description}
                   </p>
                 </div>
@@ -81,7 +76,7 @@ export function StoriesPage() {
             {featuredStory && (
               <section
                 id="featured-story"
-                className="scroll-mt-24 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-[#FAF7F0] border border-[#E9E1D4] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg"
+                className="scroll-mt-24 grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-start bg-[#FAF7F0] border border-[#E9E1D4] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg"
               >
                 {/* Left Column: Big Editorial Image */}
                 <div className="lg:col-span-6">
@@ -130,7 +125,7 @@ export function StoriesPage() {
                   <article
                     key={story.id}
                     onClick={() => handleSelectStory(story.id)}
-                    className="group relative flex flex-col justify-between bg-[#FAF7F0]/90 border border-[#E8E1D5] rounded-2xl overflow-hidden p-5 sm:p-6 shadow-sm hover:shadow-xl hover:border-[#D5C9B8] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+                    className="group relative flex flex-col justify-between bg-[#FAF7F0]/90 border border-[#E8E1D5] rounded-2xl overflow-hidden p-5 sm:p-6 shadow-sm hover:shadow-xl hover:border-[#D5C9B8] hover:-translate-y-1.3 transition-all duration-300 cursor-pointer"
                   >
                     <div className="space-y-4">
                       {/* Card Thumbnail Image */}

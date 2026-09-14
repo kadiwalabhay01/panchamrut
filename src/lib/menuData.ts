@@ -26,7 +26,7 @@ export interface MenuChapter {
 }
 
 export const MENU_INTRO = {
-  eyebrow: "AN IMMERSIVE CULINARY",
+
   title: "Lorem ipsum dolor sit amet consectetur.",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",

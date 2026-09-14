@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useSceneContext } from "./useCinematicScroll";
 
 // Import all 240 image frames from src/assets/frames
-const frameModules = import.meta.glob<string>("/src/assets/frames/*.jpg", {
+const frameModules = import.meta.glob<string>("/src/assets/frames2/*.jpg", {
   eager: true,
   import: "default",
 });
@@ -131,7 +131,7 @@ export function SceneTradition() {
       scrollTrigger: {
         trigger: ".tradition-stage",
         start: "top top",
-        end: isMobile ? "+=250%" : "+=400%",
+        end: isMobile ? "+=300%" : "+=500%",
         pin: true,
         scrub: 0.5,
         onUpdate: () => {
