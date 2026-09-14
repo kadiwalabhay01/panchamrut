@@ -1,17 +1,18 @@
 import { useRef, useState, useEffect } from "react";
-import m1 from "@/assets/memory-1.jpg";
-import m2 from "@/assets/memory-2.jpg";
-import m3 from "@/assets/memory-3.jpg";
+import m1 from "@/assets/coummunity/family_eating_together.jpeg";
+import m2 from "@/assets/coummunity/children_sharing_food.jpeg";
+import m3 from "@/assets/coummunity/friends_laughing.jpeg";
+import m4 from "@/assets/coummunity/birthday_celebration.jpeg";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import gsap from "gsap";
 
 const MEMORIES = [
-  { src: m1, caption: "Three generations." },
-  { src: m2, caption: "First coffee date." },
-  { src: m3, caption: "Every festival begins here." },
-  { src: m1, caption: "Sunday mornings." },
-  { src: m3, caption: "Office lunch, stretched to an hour." },
-  { src: m2, caption: "Weekend breakfast." },
+  { src: m1, caption: "Family Eating Together" },
+  { src: m2, caption: "Children Sharing Food" },
+  { src: m3, caption: "Friends Laughing" },
+  { src: m4, caption: "Birthday Celebration" },
+  { src: m2, caption: "Office lunch, stretched to an hour." },
+  { src: m3, caption: "Weekend breakfast." },
 ];
 
 export function SceneCommunity() {
@@ -47,10 +48,13 @@ export function SceneCommunity() {
       });
     };
 
+    let startTime = 0;
+
     const onStart = (e: TouchEvent) => {
-      if (window.innerWidth >= 768) return;
+      if (window.innerWidth >= 1024) return; // desktop — skip
       dragging = true;
       startX = e.touches[0].clientX;
+      startTime = Date.now();
       startOffset = slideOffsetRef.current;
       gsap.killTweensOf(track);
     };
@@ -67,13 +71,38 @@ export function SceneCommunity() {
       wobbleCards(maxScroll > 0 ? newOffset / maxScroll : 0);
     };
 
-    const onEnd = () => {
+    const onEnd = (e: TouchEvent) => {
       if (!dragging) return;
       dragging = false;
-      const finalOffset = slideOffsetRef.current;
-      syncOffset(finalOffset); // now commit to state
+
+      const endX = e.changedTouches[0].clientX;
+      const velocity = (startX - endX) / Math.max(Date.now() - startTime, 1); // px/ms, + = swiped left
+      const FLICK = 0.25;
+      const currentOffset = slideOffsetRef.current;
       const maxScroll = track.scrollWidth - window.innerWidth + 80;
-      gsap.to(track, { x: -finalOffset, duration: 0.4, ease: "power2.out" });
+
+      // Use real card positions from DOM for pixel-perfect snap
+      const cards = Array.from(track.querySelectorAll<HTMLElement>(".polaroid-card"));
+
+      // Find which card is currently closest to the left viewport edge
+      let closestIdx = 0;
+      let minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - currentOffset);
+        if (dist < minDist) { minDist = dist; closestIdx = i; }
+      });
+
+      // Flick adjusts by 1
+      let targetIdx = closestIdx;
+      if (velocity > FLICK) targetIdx = Math.min(closestIdx + 1, cards.length - 1);
+      if (velocity < -FLICK) targetIdx = Math.max(closestIdx - 1, 0);
+
+      // Snap offset = card's offsetLeft (left-aligns it), clamped to maxScroll
+      const snapOffset = Math.max(0, Math.min(cards[targetIdx].offsetLeft, maxScroll));
+
+      syncOffset(snapOffset);
+      wobbleCards(maxScroll > 0 ? snapOffset / maxScroll : 0);
+      gsap.to(track, { x: -snapOffset, duration: 0.55, ease: "power3.out" });
     };
 
     el.addEventListener("touchstart", onStart, { passive: true });
@@ -141,7 +170,7 @@ export function SceneCommunity() {
                 style={{
                   transform: `translateY(${i % 2 ? "14px" : "-14px"}) rotate(${i % 3 === 0 ? "2.8deg" : "-2.2deg"})`,
                 }}
-                className="polaroid-card polaroid w-[78vw] shrink-0 bg-coconut p-4 pb-14 shadow-[0_30px_70px_-30px_oklch(0.2_0.03_60/0.55)] sm:w-[36vw] lg:w-[22vw] transition-shadow duration-500 hover:shadow-[0_35px_80px_-25px_rgba(0,0,0,0.45)]"
+                className="polaroid-card polaroid w-[78vw] shrink-0 bg-coconut p-4 pb-10 shadow-[0_30px_70px_-30px_oklch(0.2_0.03_60/0.55)] sm:w-[36vw] lg:w-[22vw] transition-shadow duration-500 hover:shadow-[0_35px_80px_-25px_rgba(0,0,0,0.45)]"
               >
                 <img
                   src={memory.src}
