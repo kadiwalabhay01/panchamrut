@@ -3,10 +3,14 @@ import slide1 from "@/assets/hero/1st.jpg";
 import slide2 from "@/assets/hero/2nd.jpg";
 import slide3 from "@/assets/hero/3rd.jpg";
 
+import mSlide1 from "@/assets/hero/m1.jpeg";
+import mSlide2 from "@/assets/hero/m2.jpeg";
+import mSlide3 from "@/assets/hero/m3.jpeg";
+
 const slides = [
-  { image: slide1 },
-  { image: slide2 },
-  { image: slide3 },
+  { desktop: slide1, mobile: mSlide1 },
+  { desktop: slide2, mobile: mSlide2 },
+  { desktop: slide3, mobile: mSlide3 },
 ];
 
 export function SceneHero() {
@@ -32,12 +36,15 @@ export function SceneHero() {
           className={`absolute inset-0 transition-opacity duration-3000 ease-in-out ${i === current ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
         >
-          <img
-            src={slide.image}
-            alt="Hero background"
-            className="w-full h-full object-cover block select-none"
-            draggable={false}
-          />
+          <picture className="w-full h-full block">
+            <source media="(max-width: 639px)" srcSet={slide.mobile} />
+            <img
+              src={slide.desktop}
+              alt="Hero background"
+              className="w-full h-full object-cover block select-none"
+              draggable={false}
+            />
+          </picture>
 
         </div>
       ))}
