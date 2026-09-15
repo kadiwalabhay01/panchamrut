@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCinematicScroll } from "@/components/panchamrut/useCinematicScroll";
 import { Header } from "@/components/Header";
+import { SceneHero } from "@/components/panchamrut/SceneHero";
 import { SceneOpening } from "@/components/panchamrut/SceneOpening";
 import { SceneTaste } from "@/components/panchamrut/SceneTaste";
 import { SceneTradition } from "@/components/panchamrut/SceneTradition";
@@ -37,6 +38,7 @@ function Index() {
     <main className="bg-night">
       <h1 className="sr-only">Panchamrut — Five Elements. One Soulful Meal.</h1>
       <Header />
+      <SceneHero />
       <SceneOpening />
       <SceneTaste />
       <SceneTradition />

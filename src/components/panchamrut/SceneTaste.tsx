@@ -48,10 +48,10 @@ export function SceneTaste() {
 
       {/* Text coming like a popup from the middle */}
       <div className="taste-content relative z-10 flex flex-col items-center text-center text-ivory origin-center px-4">
-        <h2 className="font-display text-[clamp(3rem,10vw,6.25rem)] leading-[0.85] tracking-widest drop-shadow-2xl">
+        <h2 className="font-display text-[clamp(3rem,10vw,6.25rem)] leading-[0.85] tracking-widest drop-shadow-2xl mb-3">
           TASTE
         </h2>
-        <div className="mt-6 md:mt-8 space-y-1.5 font-display text-base sm:text-lg md:text-2xl drop-shadow-lg text-ivory/90 tracking-wide max-w-4xl">
+        <div className="space-y-1.5 font-display text-base sm:text-lg md:text-2xl drop-shadow-lg text-ivory/90 tracking-wide max-w-4xl">
           <p>At Panchamrut, taste is an invitation to experience South India in its most soulful form. The aroma of curry leaves, the warmth of freshly ground spices, the tang of tamarind and the richness of coconut come together in dishes that are vibrant yet balanced. Rooted in tradition and crafted with care, every plate at Panchamrut is a celebration of flavour, memory and the joy of eating together.</p>
         </div>
       </div>

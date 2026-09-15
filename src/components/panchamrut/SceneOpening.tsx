@@ -6,7 +6,7 @@ export function SceneOpening() {
   const root = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showHeading, setShowHeading] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -15,13 +15,32 @@ export function SceneOpening() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  // Auto-unmute at 10% volume as soon as the video element is ready
+  // Play video only when it enters the viewport
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    // Keep muted attribute for autoplay compliance; remove it immediately after mount
     video.volume = 0.1;
-    video.muted = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch((err) => {
+              console.warn("Autoplay was prevented by browser:", err);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   // Smooth volume fade via ScrollTrigger (runs once video is mounted)
@@ -124,7 +143,6 @@ export function SceneOpening() {
             height={1280}
             className="kalash-img w-full h-auto block lg:absolute lg:inset-0 lg:h-full lg:w-full lg:object-cover object-center z-10"
             muted
-            autoPlay
             loop
             playsInline
           />
